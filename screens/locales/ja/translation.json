@@ -1,0 +1,144 @@
+{
+  "NSUserTrackingUsageDescription": "他社のデータを活用して広告を表示するために、トラッキングの許可をお願いします。",
+  "NSMicrophoneUsageDescription": "このアプリは、音声メッセージで注文を送信するためにマイクを使用します。",
+  "userTrackingPermission": "他社のデータを活用して広告を表示するために、トラッキングの許可をお願いします。",
+  "user_tracking_usage_description": "他社のデータを活用して広告を表示するために、トラッキングの許可をお願いします。",
+  "cameraPermission": "撮影写真を解析するために、カメラへのアクセスが必要です。",
+  "photosPermission": "保存済みの写真を解析するために写真ライブラリへのアクセスが必要です。",
+  "microphonePermission": "このアプリは、音声メッセージで注文を送信するためにマイクを使用します。",
+  "propmpt_system": "必ず配列のみ返却してください。構成は{No: 1, title: '問１', body: '1 + 1', answer: '2', explanation: '1 + 1 = 2 です。', result: true}のJson形式でお願いします。",
+  "custom_prompt_user": "画像は{{name}}です。解析して、{{result}}を返却してください。titleには「{{title}}」、bodyには「{{body}}」、answerには「{{answer}}」、explanationには「{{explanation}}」、resultにはnullをお願いします。",
+  "detail_or_easy": "簡潔な",
+  "all": "全て",
+  "camera": "カメラ",
+  "result": "結果",
+  "settings": "設定",
+  "mode": {
+    "test": "テスト回答モード",
+    "translate": "翻訳モード",
+    "fashion": "ファッションチェックモード",
+    "recipe": "レシピモード",
+    "calory": "カロリーモード",
+    "trash": "ゴミ分別モード",
+    "plants": "植物ケアモード",
+    "face_review": "顔診断モード",
+    "hair_review": "髪型診断モード",
+    "makeup_review": "メイク診断モード",
+    "program": "プログラミングモード",
+    "diary": "日記モード",
+    "sns": "SNS投稿モード",
+    "study_notes": "ノート評価モード",
+    "daily_mood": "今日の気分モード",
+    "meal_judgement": "食事評価モード",
+    "oogiri": "AI大喜利モード"
+  },
+  "prompt_user_descriptions": {
+    "test": "画像は問題用紙です。問題文を解析して、結果を返却してください。titleには問題のタイトル、bodyには問題文、answerには答え、explanationには{{detail_or_easy}}問題の解き方、resultには合っているか否かをお願いします。答えが書いてない箇所は否にしてください。",
+    "translate": "画像は外国語です。解析して、日本語にしてください。titleには「翻訳結果」、bodyには読み取った外国語、answerには{{detail_or_easy}}翻訳結果、explanationにはnull、resultはnullをお願いします。",
+    "fashion": "あなたはプロのファッションデザイナーです。全体的なファッションセンスから厳しめに評価してください。titleには「総評」、bodyには点数（100点満点）、answerには良い、悪いなどの概要評価、explanationには{{detail_or_easy}}改善点、resultはnullでお願いします。",
+    "recipe": "画像は食材です。一部または全てを利用してレシピを考案してください。titleには料理名、bodyには材料、answerには作り方、explanationには{{detail_or_easy}}料理の説明、resultにはnullをお願いします。",
+    "calory": "画像は料理または食材です。解析して、カロリーを返却してください。titleには「総カロリー数」、bodyにはnull、answerにはカロリー数、explanationにはカロリーの{{detail_or_easy}}説明、resultにはnullをお願いします。",
+    "trash": "画像はゴミです。解析して、ごみの種類を返却してください。titleには名称、bodyにはnull、answerにはごみの種類、explanationには{{detail_or_easy}}説明、resultはnullをお願いします。",
+    "plants": "画像は植物です。解析して、状態を確認してください。titleには植物名称、bodyには良し悪しの概要、answerには{{detail_or_easy}}植物の状態、explanationには{{detail_or_easy}}ケアの方法、resultにはnullをお願いします。",
+    "face_review": "画像は顔です。顔が整っているか、イケメン、美人、可愛いなどを基準に厳しめに点数評価してください。titleには「評価」、bodyには点数（100点満点）、answerには良い、悪いなどの概要評価、explanationには{{detail_or_easy}}評価と説明、resultはnullでお願いします。",
+    "hair_review": "画像は顔です。髪型が顔にあっているか厳しめに評価してください。titleには「評価」、bodyには点数（100点満点）、answerには良い、悪いなどの概要評価、explanationには{{detail_or_easy}}改善点と説明、resultはnullでお願いします。",
+    "makeup_review": "画像は顔です。メイクセットが顔にあっているか厳しめに評価してください。titleには「評価」、bodyには点数（100点満点）、answerには良い、悪いなどの概要評価、explanationには{{detail_or_easy}}改善点と説明、resultはnullでお願いします。",
+    "program": "画像はプログラミング要件です。解析して、プログラミングしてください。titleには「プログラミング結果」、bodyには読み取った要件、answerには{{detail_or_easy}}プログラミング結果、explanationにはnull、resultはnullをお願いします。",
+    "diary": "画像は今日の出来事を撮影した写真です。解析して、日記を作成してください。titleには「日記」、bodyには読み取った要件、answerには{{detail_or_easy}}日記の内容、explanationにはnull、resultはnullをお願いします。",
+    "sns": "あなたはSNSマーケティングの専門家です。画像をSNSに投稿する際の最適な内容を提案してください。titleには「SNS投稿案」、bodyにはnull、answerにはキャッチーな投稿内容、explanationにはnull、resultにはnullをお願いします。",
+    "study_notes": "あなたは教育のプロフェッショナルです。画像はノートやメモです。学習効率を評価し、改善点を提案してください。titleには「ノート評価」、bodyには点数（100点満点）、answerには良い点・改善点の概要、explanationには{{detail_or_easy}}具体的な改善方法とコツ、resultにはnullをお願いします。",
+    "daily_mood": "画像は日常のセルフィーや表情を捉えた写真です。解析して、その日の気分や健康状態を評価し、簡単なモチベーションメッセージやアドバイスを返却してください。titleには「今日の気分」と記載し、bodyには顔の特徴や表情の印象、answerには{{detail_or_easy}}気分の要約、explanationには簡単な励ましの言葉や改善のポイント、resultはnullをお願いします。",
+    "meal_judgement": "画像は日常の食事や料理の写真です。解析して、健康面や栄養バランス、見た目の美味しさなどについて評価してください。titleには「食事評価」と記載し、bodyには料理名や食材の状況、answerには{{detail_or_easy}}健康度や美味しさの評価、explanationには栄養面でのアドバイスや改善点、resultはnullをお願いします。",
+    "oogiri": "画像はお題となる写真です。この写真を見て、誰しもが笑うような面白い回答を生成してください。titleには「AI大喜利」、bodyにはnull、answerには面白い回答、explanationにはnull、resultにはnullをお願いします。"
+  },
+  "explane": {
+    "test": "問題用紙を撮影してください。解説・回答を行います。\r\n５教科の中学生程度までですが、数学などは読み取れない記号などが存在します。",
+    "translate": "外国語を撮影してください。\r\n翻訳を行います。AIの精度によるので必ずしも正解しているわけではありません。",
+    "fashion": "コーディネートを撮影してください。\r\n各ファッションに関しての評価を行います。",
+    "recipe": "食材を撮影してください。\r\n食材からレシピを考案します。",
+    "calory": "料理を撮影してください。\r\nカロリーを計算します。距離や大きさが把握できない可能性があるため、必ずしも正解しているわけではありません。",
+    "trash": "ゴミを撮影してください。\r\nゴミの分別を行います。ゴミの収集日に関しては自治体のルールに則ってください。",
+    "plants": "植物を撮影してください。\r\n植物の状態を評価します。",
+    "face_review": "顔を撮影してください。\r\nイケメン、美人度などを点数評価します。AIの独断で採点したものなので、気にしないでください。",
+    "hair_review": "顔を撮影してください。\r\n髪型のセットを点数評価します。",
+    "makeup_review": "顔を撮影してください。\r\nメイクセットを点数評価します。",
+    "program": "プログラミング要件を撮影してください。\r\nプログラミングを行います。AIの精度によるので必ずしも正解しているわけではありません。",
+    "diary": "出来事を撮影してください。\r\n日記を作成します。",
+    "sns": "SNS用の画像を撮影してください。\r\nキャッチーな投稿案を生成します。",
+    "study_notes": "ノートやメモを撮影してください。\r\n学習効率を評価し、改善点を提案します。",
+    "daily_mood": "セルフィーや表情の写真を撮影してください。\r\nその日の気分や健康状態を評価します。",
+    "meal_judgement": "食事や料理の写真を撮影してください。\r\n健康度や美味しさを評価します。",
+    "oogiri": "お題となる写真を撮影してください。\r\n面白い回答を生成します。"
+  },
+  "short_explane": {
+    "test": "問題の回答を教えます",
+    "translate": "外国語を翻訳します",
+    "fashion": "ファッションを評価します",
+    "recipe": "食材からレシピを考案します",
+    "calory": "料理のカロリーを算出します",
+    "trash": "ゴミを分別します",
+    "plants": "植物の状態を診断します",
+    "face_review": "顔を採点します",
+    "hair_review": "髪型のセットを採点します",
+    "makeup_review": "メイクセットを採点します",
+    "program": "プログラミングします",
+    "diary": "日記を作成します",
+    "sns": "SNS投稿案を生成します",
+    "study_notes": "ノート評価を行います",
+    "daily_mood": "気分を評価します",
+    "meal_judgement": "食事評価を行います",
+    "oogiri": "AI大喜利を生成します"
+  },
+  "instructions": {
+    "part1": "利用方法",
+    "part2": "写真を撮影すると、AIが回答してくれます。\r\nテストの回答、外国語の翻訳、ファッションチェック、食材からレシピの考案、料理のカロリー計算、ゴミの分別、植物のケア方法など使用したいライフスタイルに応じてご利用ください。\r\n\r\n注意：AIの回答はすべてが正しいというわけではありません。\r\nまた、悪用は厳禁でお願いします。"
+  },
+  "permissions": {
+    "camera_required": "カメラの許可が必要です",
+    "camera_usage": "このアプリでカメラを使用するには、カメラの許可が必要です。設定画面で許可を変更してください。"
+  },
+  "actions": {
+    "cancel": "キャンセル",
+    "go_to_settings": "設定画面へ",
+    "analysis_result": "解析結果：",
+    "answer": "回答：",
+    "explanation": "解説：",
+    "ticket": "チケット",
+    "purchase_ticket": "購入した{{NAME}}は1日のAI利用制限を超えて使用できます。また、広告が表示されないため、結果を確認するまでの時間が短くなります。",
+    "ticket_note": "注意：{{NAME}}消費時は動画広告はでませんが、解析には多少の時間がかかります。",
+    "bonus": "ボーナス："
+  },
+  "subscription": {
+    "per_month": "/月"
+  },
+  "legal": {
+    "terms_of_use": "利用規約",
+    "privacy_policy": "プライバシーポリシー"
+  },
+  "search": {
+    "filter": "検索フィルター",
+    "select_item": "項目を選択"
+  },
+  "analysis": {
+    "analyze_image": "画像を解析します",
+    "use_ticket_for_analysis": "チケットを消費して解析",
+    "number_of_tickets": "チケット数：",
+    "watch_ad_for_analysis": "広告を見て解析"
+  },
+  "permissions_alerts": {
+    "image_view_permission": "イメージビューの許可が必要です",
+    "refer_permission": "参照するには許可が必要です。設定画面で許可を変更してください。"
+  },
+  "rewards": {
+    "five_star_rating": "評価で★５を付けて頂けると、１回分のチケットが付与されます。"
+  },
+  "errors": {
+    "not_enough_tickets": "チケットが足りません",
+    "daily_limit_exceeded": "今日の上限を超えています",
+    "purchase_tickets": "チケットを購入しますか？",
+    "purchase": "購入する",
+    "api_load_failed": "API読み込みに失敗しました。",
+    "analyzing": "解析中...",
+    "explane": "説明"
+  }
+}

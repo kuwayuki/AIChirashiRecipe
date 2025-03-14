@@ -1,0 +1,77 @@
+{
+  "expo": {
+    "name": "IAnswer",
+    "slug": "IAnswer",
+    "version": "1.0.25",
+    "ios": {
+      "buildNumber": "25",
+      "supportsTablet": true,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-2103807205659646~3048157861"
+      },
+      "bundleIdentifier": "com.kuwahara.IAnswer",
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true,
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "locales": {
+      "ja": "./screens/locales/ja/translation.json",
+      "en": "./screens/locales/en/translation.json",
+      "de": "./screens/locales/de/translation.json",
+      "es": "./screens/locales/es/translation.json",
+      "fr": "./screens/locales/fr/translation.json",
+      "ko": "./screens/locales/ko/translation.json",
+      "pt": "./screens/locales/pt-BR/translation.json",
+      "zh": "./screens/locales/zh-CN/translation.json",
+      "hi": "./screens/locales/hi/translation.json"
+    },
+    "plugins": [
+      ["expo-tracking-transparency"],
+      ["expo-camera"],
+      ["expo-image-picker"],
+      "expo-secure-store"
+    ],
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "com.google.android.gms.permission.AD_ID"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3845abf4-c362-4dbd-9e69-9816fc62c837",
+        "awsAccessKeyId": "${ACCESS_KEY}",
+        "awsSecretAccessKey": "${SECRET_ACCESS_KEY}"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/3845abf4-c362-4dbd-9e69-9816fc62c837"
+    }
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-xxxxxxxx~xxxxxxxx",
+    "ios_app_id": "ca-app-pub-2103807205659646~3048157861",
+    "delay_app_measurement_init": true,
+    "user_tracking_usage_description": "「許可」を押すと、他社のデータも活用し、よりお客様に適した広告が表示されます。"
+  }
+}

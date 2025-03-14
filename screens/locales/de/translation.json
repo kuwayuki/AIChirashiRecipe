@@ -1,0 +1,143 @@
+{
+  "NSUserTrackingUsageDescription": "Diese App benötigt Ihre Erlaubnis, um Ihre Aktivitäten zu verfolgen und personalisierte Werbung bereitzustellen.",
+  "NSMicrophoneUsageDescription": "Diese App verwendet das Mikrofon, um Benutzern das Senden von Bestellungen per Sprachmitteilung zu ermöglichen.",
+  "userTrackingPermission": "Diese App benötigt Ihre Erlaubnis, um Ihre Aktivitäten zu verfolgen und personalisierte Werbung bereitzustellen.",
+  "user_tracking_usage_description": "Diese App benötigt Ihre Erlaubnis, um Ihre Aktivitäten zu verfolgen und personalisierte Werbung bereitzustellen.",
+  "cameraPermission": "Diese App benötigt Zugriff auf Ihre Kamera, um Fotos zu machen und zu analysieren.",
+  "photosPermission": "Diese App benötigt Zugriff auf Ihre Fotobibliothek, um gespeicherte Fotos zu analysieren.",
+  "microphonePermission": "Diese App verwendet das Mikrofon, um Benutzern das Senden von Bestellungen per Sprachmitteilung zu ermöglichen.",
+  "propmpt_system": "Bitte geben Sie nur ein Array zurück. Das Format sollte JSON wie {No: 1, title: 'Frage 1', body: '1 + 1', answer: '2', explanation: '1 + 1 = 2.', result: true} sein.",
+  "custom_prompt_user": "Das Bild ist von {{name}}. Bitte analysieren und geben Sie {{result}} zurück. Für den Titel verwenden Sie '{{title}}'; für den Text verwenden Sie '{{body}}'; für die Antwort verwenden Sie '{{answer}}'; für die Erklärung verwenden Sie '{{explanation}}'; und für das Ergebnis verwenden Sie null.",
+  "detail_or_easy": "prägnant",
+  "all": "Alle",
+  "camera": "Kamera",
+  "result": "Ergebnis",
+  "settings": "Einstellungen",
+  "mode": {
+    "test": "Testantwort-Modus",
+    "translate": "Übersetzungsmodus",
+    "fashion": "Mode-Check-Modus",
+    "recipe": "Rezeptmodus",
+    "calory": "Kalorienmodus",
+    "trash": "Mülltrennmodus",
+    "plants": "Pflanzenpflege-Modus",
+    "face_review": "Gesichtsanalyse-Modus",
+    "hair_review": "Frisurenanalyse-Modus",
+    "makeup_review": "Makeup-Analyse-Modus",
+    "program": "Programmierungsmodus",
+    "diary": "Tagebuchmodus",
+    "sns": "SNS-Beitragsmodus",
+    "study_notes": "Notenauswertungsmodus",
+    "daily_mood": "Tagesstimmungsmodus",
+    "meal_judgement": "Mahlzeitenbewertungsmodus",
+    "oogiri": "AI-Oogiri-Modus"
+  },
+  "prompt_user_descriptions": {
+    "test": "Das Bild ist von einem Testblatt. Bitte analysieren Sie die Fragen und geben Sie die Ergebnisse zurück. Für den Titel verwenden Sie den Fragetitel; für den Text verwenden Sie den Fragetext; für die Antwort geben Sie die Antwort; für die Erklärung geben Sie eine {{detail_or_easy}} Erklärung der Lösung; für das Ergebnis geben Sie an, ob es korrekt ist oder nicht. Wenn die Antwort nicht angegeben ist, markieren Sie sie als falsch.",
+    "translate": "Das Bild ist in einer Fremdsprache. Bitte analysieren und übersetzen Sie es ins Deutsche. Verwenden Sie für title 'Übersetzungsergebnis', für body den fremdsprachigen Text, für answer die {{detail_or_easy}} Übersetzung, für explanation null und für result null.",
+    "fashion": "Sie sind ein professioneller Modedesigner. Bitte bewerten Sie streng das allgemeine Modebewusstsein. Für den Titel verwenden Sie 'Gesamtbewertung'; für den Text geben Sie eine Punktzahl (von 100); für die Antwort geben Sie eine allgemeine Bewertung wie gut oder schlecht; für die Erklärung geben Sie {{detail_or_easy}} Verbesserungspunkte; für das Ergebnis verwenden Sie null.",
+    "recipe": "Das Bild ist von Zutaten. Bitte verwenden Sie einige oder alle, um ein Rezept zu erstellen. Für den Titel verwenden Sie den Namen des Gerichts; für den Text listen Sie die Zutaten auf; für die Antwort geben Sie das Rezept; für die Erklärung geben Sie eine {{detail_or_easy}} Erklärung des Gerichts; für das Ergebnis verwenden Sie null.",
+    "calory": "Das Bild ist von Lebensmitteln oder Zutaten. Bitte analysieren und geben Sie die Kalorienzahl zurück. Für den Titel verwenden Sie 'Gesamtkalorienzahl'; für den Text verwenden Sie null; für die Antwort geben Sie die Kalorienzahl; für die Erklärung geben Sie eine {{detail_or_easy}} Erklärung der Kalorien; für das Ergebnis verwenden Sie null.",
+    "trash": "Das Bild ist von Müll. Bitte analysieren und geben Sie den Mülltyp zurück. Für den Titel verwenden Sie den Namen; für den Text verwenden Sie null; für die Antwort geben Sie den Mülltyp; für die Erklärung geben Sie eine {{detail_or_easy}} Erklärung; für das Ergebnis verwenden Sie null.",
+    "plants": "Das Bild ist von einer Pflanze. Bitte analysieren und prüfen Sie deren Zustand. Für den Titel verwenden Sie den Pflanzennamen; für den Text geben Sie eine allgemeine Bewertung des Zustands; für die Antwort geben Sie den {{detail_or_easy}} Zustand der Pflanze; für die Erklärung geben Sie {{detail_or_easy}} Pflegeanweisungen; für das Ergebnis verwenden Sie null.",
+    "face_review": "Das Bild ist von einem Gesicht. Bitte bewerten Sie streng die Attraktivität anhand von Kriterien wie hübsch, schön, süß usw. und geben Sie eine Punktzahl. Für den Titel verwenden Sie 'Bewertung'; für den Text geben Sie eine Punktzahl (von 100); für die Antwort geben Sie eine allgemeine Bewertung wie gut oder schlecht; für die Erklärung geben Sie eine {{detail_or_easy}} Bewertung und Erklärung; für das Ergebnis verwenden Sie null.",
+    "hair_review": "Das Bild ist von einem Gesicht. Bitte bewerten Sie streng, wie gut die Frisur zum Gesicht passt. Für den Titel verwenden Sie 'Bewertung'; für den Text geben Sie eine Punktzahl (von 100); für die Antwort geben Sie eine allgemeine Bewertung wie gut oder schlecht; für die Erklärung geben Sie {{detail_or_easy}} Verbesserungspunkte und Erklärung; für das Ergebnis verwenden Sie null.",
+    "makeup_review": "Das Bild ist von einem Gesicht. Bitte bewerten Sie streng, wie gut das Make-up zum Gesicht passt. Für den Titel verwenden Sie 'Bewertung'; für den Text geben Sie eine Punktzahl (von 100); für die Antwort geben Sie eine allgemeine Bewertung wie gut oder schlecht; für die Erklärung geben Sie {{detail_or_easy}} Verbesserungspunkte und Erklärung; für das Ergebnis verwenden Sie null.",
+    "program": "Das Bild zeigt Programmieranforderungen. Bitte analysieren Sie es und programmieren Sie entsprechend. Der Titel soll „Programmierergebnis“ sein, im Body die erkannten Anforderungen, im Antwortfeld das {{detail_or_easy}} Programmergebnis, und bei Erklärung sowie Ergebnis bitte null eintragen.",
+    "diary": "Das Bild ist ein Foto von den heutigen Ereignissen. Bitte analysieren Sie es und erstellen Sie ein Tagebuch. Der Titel soll „Tagebuch“ sein, im Body die erfassten Informationen, im Antwortfeld das {{detail_or_easy}} Tagebucheintrag, und bei Erklärung sowie Ergebnis bitte null eintragen.",
+    "sns": "Sie sind ein Experte im SNS-Marketing. Schlagen Sie den optimalen Inhalt für einen SNS-Beitrag vor, basierend auf dem Bild. Setzen Sie den Titel auf „SNS-Beitragsvorschlag“, body auf null, answer auf einen einprägsamen Beitragstext, explanation auf null und result auf null.",
+    "study_notes": "Sie sind ein Bildungsexperte. Das Bild zeigt Notizen oder Mitschriften. Bewerten Sie die Lerneffizienz und schlagen Sie Verbesserungen vor. Setzen Sie title auf „Notenbewertung“, body auf eine Punktzahl (von 100), answer auf eine Zusammenfassung von Stärken und Verbesserungsmöglichkeiten, explanation auf detaillierte Verbesserungstipps und result auf null.",
+    "daily_mood": "Das Bild zeigt ein Selfie oder ein Foto, das den Gesichtsausdruck einfängt. Analysieren Sie es und bewerten Sie die Stimmung sowie den Gesundheitszustand des Tages. Setzen Sie title auf „Tagesstimmung“, body auf Merkmale des Gesichts oder den Eindruck der Mimik, answer auf eine Zusammenfassung der Stimmung, explanation auf einen kurzen ermutigenden Hinweis oder Verbesserungsvorschläge und result auf null.",
+    "meal_judgement": "Das Bild zeigt ein Gericht oder eine Mahlzeit. Analysieren Sie es und bewerten Sie Aspekte wie Gesundheit, Nährstoffbalance und visuelle Attraktivität. Setzen Sie title auf „Mahlzeitenbewertung“, body auf den Namen des Gerichts oder den Zustand der Zutaten, answer auf eine Bewertung in Bezug auf Gesundheit und Geschmack, explanation auf Ernährungsratschläge oder Verbesserungsvorschläge und result auf null.",
+    "oogiri": "Das Bild dient als Themenvorgabe. Erstellen Sie eine humorvolle Antwort, die alle zum Lachen bringt. Setzen Sie title auf „AI-Oogiri“, body auf null, answer auf eine witzige Antwort, explanation auf null und result auf null."
+  },
+  "explane": {
+    "test": "Bitte fotografieren Sie das Testblatt. Wir werden Erklärungen und Antworten bereitstellen. Es ist auf die fünf Fächer des mittleren Schulniveaus beschränkt, aber einige Symbole in Mathematik sind möglicherweise nicht lesbar.",
+    "translate": "Bitte fotografieren Sie den fremdsprachigen Text. Wir werden ihn übersetzen. Aufgrund der Genauigkeit der KI ist es möglicherweise nicht immer korrekt.",
+    "fashion": "Bitte fotografieren Sie Ihr Outfit. Wir werden jeden Modeartikel bewerten.",
+    "recipe": "Bitte fotografieren Sie die Zutaten. Wir werden ein Rezept mit den Zutaten erstellen.",
+    "calory": "Bitte fotografieren Sie das Essen. Wir werden die Kalorien berechnen. Aufgrund möglicher Ungenauigkeiten bei der Messung von Entfernung und Größe ist es möglicherweise nicht immer korrekt.",
+    "trash": "Bitte fotografieren Sie den Müll. Wir werden den Müll trennen. Bitte befolgen Sie die Regeln Ihrer örtlichen Regierung für Abholtage.",
+    "plants": "Bitte fotografieren Sie die Pflanze. Wir werden ihren Zustand bewerten.",
+    "face_review": "Bitte fotografieren Sie Ihr Gesicht. Wir werden es basierend auf Kriterien wie hübsch, schön, süß usw. bewerten. Dies ist eine KI-Bewertung, also nehmen Sie es bitte nicht zu ernst.",
+    "hair_review": "Bitte fotografieren Sie Ihr Gesicht. Wir werden Ihre Frisur bewerten.",
+    "makeup_review": "Bitte fotografieren Sie Ihr Gesicht. Wir werden Ihr Make-up bewerten.",
+    "program": "Bitte fotografieren Sie die Programmieranforderungen.\r\nEs wird programmiert. Aufgrund der AI-Präzision ist es nicht unbedingt korrekt.",
+    "diary": "Bitte fotografieren Sie die Ereignisse.\r\nEin Tagebuch wird erstellt.",
+    "sns": "Bitte fotografieren Sie ein Bild, das sich für SNS eignet. Wir generieren einen eingängigen Beitragsvorschlag.",
+    "study_notes": "Bitte fotografieren Sie Ihre Notizen oder Mitschriften. Wir bewerten die Lerneffizienz und geben Verbesserungstipps.",
+    "daily_mood": "Bitte fotografieren Sie ein Selfie oder ein Bild Ihres Gesichtsausdrucks. Wir bewerten Ihre Tagesstimmung und den Gesundheitszustand.",
+    "meal_judgement": "Bitte fotografieren Sie ein Gericht oder eine Mahlzeit. Wir bewerten die Gesundheit, den Nährstoffgehalt und die visuelle Attraktivität des Essens.",
+    "oogiri": "Bitte fotografieren Sie das vorgegebene Bild. Wir generieren eine humorvolle Antwort, die alle zum Lachen bringt."
+  },
+  "short_explane": {
+    "test": "Wir werden Ihnen die Antworten auf die Fragen sagen.",
+    "translate": "Wir werden die Fremdsprache übersetzen.",
+    "fashion": "Wir werden Ihre Mode bewerten.",
+    "recipe": "Wir werden ein Rezept mit den Zutaten erstellen.",
+    "calory": "Wir werden die Kalorien des Essens berechnen.",
+    "trash": "Wir werden den Müll trennen.",
+    "plants": "Wir werden den Zustand der Pflanze diagnostizieren.",
+    "face_review": "Wir werden Ihr Gesicht bewerten.",
+    "hair_review": "Wir werden Ihre Frisur bewerten.",
+    "makeup_review": "Wir werden Ihr Make-up bewerten.",
+    "program": "Programmieren",
+    "diary": "Tagebuch erstellen",
+    "sns": "Erstellt einen SNS-Beitragsvorschlag.",
+    "study_notes": "Bewertet Ihre Notizen.",
+    "daily_mood": "Bewertet Ihre Tagesstimmung.",
+    "meal_judgement": "Bewertet Ihre Mahlzeit.",
+    "oogiri": "Erstellt eine humorvolle AI-Antwort."
+  },
+  "instructions": {
+    "part1": "Anweisungen",
+    "part2": "Machen Sie ein Foto und die KI wird antworten.\r\nVerwenden Sie es für Testantworten, Fremdsprachenübersetzung, Modecheck, Rezepterstellung aus Zutaten, Berechnung der Lebensmittelkalorien, Mülltrennung, Pflanzenpflege und mehr entsprechend Ihren Lebensstilbedürfnissen.\r\nHinweis: Die Antworten der KI sind möglicherweise nicht immer korrekt.\r\nAußerdem ist Missbrauch strengstens untersagt."
+  },
+  "permissions": {
+    "camera_required": "Kameraberechtigung erforderlich.",
+    "camera_usage": "Diese App benötigt Zugriff auf die Kamera, um Fotos zu machen. Bitte ändern Sie die Berechtigungen in den Einstellungen."
+  },
+  "actions": {
+    "cancel": "Abbrechen",
+    "go_to_settings": "Zu den Einstellungen gehen",
+    "analysis_result": "Analyseergebnis",
+    "answer": "Antwort",
+    "explanation": "Erklärung",
+    "ticket": "Ticket",
+    "purchase_ticket": "Das gekaufte {{NAME}} kann über das tägliche KI-Nutzungslimit hinaus verwendet werden. Außerdem werden keine Anzeigen geschaltet, sodass Sie die Ergebnisse schneller sehen können.",
+    "ticket_note": "Hinweis: Beim Verbrauch von {{NAME}} werden keine Videoanzeigen angezeigt, aber die Analyse kann einige Zeit dauern.",
+    "bonus": "Bonus"
+  },
+  "subscription": {
+    "per_month": "/Monat"
+  },
+  "legal": {
+    "terms_of_use": "Nutzungsbedingungen",
+    "privacy_policy": "Datenschutzrichtlinie"
+  },
+  "search": {
+    "filter": "Suchfilter",
+    "select_item": "Element auswählen"
+  },
+  "analysis": {
+    "analyze_image": "Bild analysieren",
+    "use_ticket_for_analysis": "Ticket für die Analyse verwenden",
+    "number_of_tickets": "Anzahl der Tickets",
+    "watch_ad_for_analysis": "Werbung ansehen für die Analyse"
+  },
+  "permissions_alerts": {
+    "image_view_permission": "Berechtigung zur Bildanzeige erforderlich",
+    "refer_permission": "Berechtigung erforderlich, um zu referenzieren. Bitte ändern Sie die Berechtigungen in den Einstellungen."
+  },
+  "rewards": {
+    "five_star_rating": "Wenn Sie eine 5-Sterne-Bewertung abgeben, erhalten Sie ein Ticket."
+  },
+  "errors": {
+    "not_enough_tickets": "Nicht genug Tickets.",
+    "daily_limit_exceeded": "Sie haben das Tageslimit überschritten.",
+    "purchase_tickets": "Möchten Sie Tickets kaufen?",
+    "purchase": "Kaufen",
+    "api_load_failed": "API-Ladevorgang fehlgeschlagen.",
+    "analyzing": "Analysieren..."
+  }
+}

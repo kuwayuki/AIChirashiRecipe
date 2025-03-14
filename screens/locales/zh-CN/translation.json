@@ -1,0 +1,143 @@
+{
+  "NSUserTrackingUsageDescription": "此应用程序需要您的许可来跟踪您的活动以提供个性化广告。",
+  "NSMicrophoneUsageDescription": "此应用程序使用麦克风以允许用户通过语音消息发送订单。",
+  "userTrackingPermission": "此应用程序需要您的许可来跟踪您的活动以提供个性化广告。",
+  "user_tracking_usage_description": "此应用程序需要您的许可来跟踪您的活动以提供个性化广告。",
+  "cameraPermission": "此应用程序需要访问您的相机以拍摄和分析照片。",
+  "photosPermission": "此应用程序需要访问您的照片库以分析保存的照片。",
+  "microphonePermission": "此应用程序使用麦克风以允许用户通过语音消息发送订单。",
+  "propmpt_system": "请仅返回一个数组。格式应为 {No: 1, title: '问题1', body: '1 + 1', answer: '2', explanation: '1 + 1 = 2。', result: true} 的 JSON。",
+  "custom_prompt_user": "图像是{{name}}。请分析并返回{{result}}。对于标题，使用 '{{title}}'；对于正文，使用 '{{body}}'；对于答案，使用 '{{answer}}'；对于解释，使用 '{{explanation}}'；对于结果，使用 null。",
+  "detail_or_easy": "简洁",
+  "all": "全部",
+  "camera": "相机",
+  "result": "结果",
+  "settings": "设置",
+  "mode": {
+    "test": "测试回答模式",
+    "translate": "翻译模式",
+    "fashion": "时尚检测模式",
+    "recipe": "食谱模式",
+    "calory": "卡路里模式",
+    "trash": "垃圾分类模式",
+    "plants": "植物护理模式",
+    "face_review": "面部诊断模式",
+    "hair_review": "发型诊断模式",
+    "makeup_review": "化妆诊断模式",
+    "program": "编程模式",
+    "diary": "日记模式",
+    "sns": "SNS发布模式",
+    "study_notes": "笔记评价模式",
+    "daily_mood": "今日心情模式",
+    "meal_judgement": "餐食评价模式",
+    "oogiri": "AI大喜利模式"
+  },
+  "prompt_user_descriptions": {
+    "test": "图像是试卷。请分析问题并返回结果。对于标题，使用问题标题；对于正文，使用问题文本；对于答案，提供答案；对于解释，提供{{detail_or_easy}}的解答说明；对于结果，说明是否正确。如果没有提供答案，请标记为不正确。",
+    "translate": "图像是外语。请分析并翻译成中文。对于标题，使用“翻译结果”；对于正文，使用外文文本；对于答案，提供{{detail_or_easy}}翻译；对于解释，使用null；对于结果，使用null。",
+    "fashion": "您是专业的时尚设计师。请严格评估整体时尚感。对于标题，使用 '总体评分'；对于正文，提供评分（满分100分）；对于答案，提供一般评价，如好或差；对于解释，提供{{detail_or_easy}}的改进建议；对于结果，使用 null。",
+    "recipe": "图像是食材。请使用一些或全部食材来制作食谱。对于标题，使用菜名；对于正文，列出食材；对于答案，提供食谱；对于解释，提供{{detail_or_easy}}的菜肴说明；对于结果，使用 null。",
+    "calory": "图像是食物或食材。请分析并返回卡路里数。对于标题，使用 '总卡路里数'；对于正文，使用 null；对于答案，提供卡路里数；对于解释，提供{{detail_or_easy}}的卡路里说明；对于结果，使用 null。",
+    "trash": "图像是垃圾。请分析并返回垃圾类型。对于标题，使用名称；对于正文，使用 null；对于答案，提供垃圾类型；对于解释，提供{{detail_or_easy}}的说明；对于结果，使用 null。",
+    "plants": "图像是植物。请分析并检查其状况。对于标题，使用植物名称；对于正文，提供一般评估；对于答案，提供植物状况的{{detail_or_easy}}说明；对于解释，提供{{detail_or_easy}}的护理方法；对于结果，使用 null。",
+    "face_review": "图像是面部。请根据帅气、美丽、可爱等标准严格评估其吸引力并评分。对于标题，使用 '评估'；对于正文，提供评分（满分100分）；对于答案，提供一般评价，如好或差；对于解释，提供{{detail_or_easy}}的评估和说明；对于结果，使用 null。",
+    "hair_review": "图像是面部。请严格评估发型与面部的匹配程度。对于标题，使用 '评估'；对于正文，提供评分（满分100分）；对于答案，提供一般评价，如好或差；对于解释，提供{{detail_or_easy}}的改进建议和说明；对于结果，使用 null。",
+    "makeup_review": "图像是面部。请严格评估化妆与面部的匹配程度。对于标题，使用 '评估'；对于正文，提供评分（满分100分）；对于答案，提供一般评价，如好或差；对于解释，提供{{detail_or_easy}}的改进建议和说明；对于结果，使用 null。",
+    "program": "图片包含编程要求。请分析并据此编程。标题使用『编程结果』，正文为读取到的要求，答案中填写{{detail_or_easy}}编程结果，解释和结果请设为null。",
+    "diary": "图片是捕捉到今天事件的照片。请分析后创建日记。标题使用『日记』，正文为读取到的内容，答案中填写{{detail_or_easy}}日记内容，解释和结果请设为null。",
+    "sns": "您是SNS营销专家。请根据图片为SNS发布提出最佳内容建议。标题设为“SNS发布方案”，body为null，answer为吸引人的发布内容，explanation为null，result为null。",
+    "study_notes": "您是一位教育专家。图片展示的是笔记或备忘录。请评估学习效率并提出改进建议。标题设为“笔记评价”，body为100分制评分，answer为优点及改进点概要，explanation为详细的改进方法和建议，result为null。",
+    "daily_mood": "图片为自拍或捕捉表情的照片。请分析并评估当天的心情及健康状态。标题设为“今日心情”，body为面部特征或表情印象，answer为心情总结，explanation为简短的鼓励语或改进建议，result为null。",
+    "meal_judgement": "图片为日常食物或料理照片。请分析并评估健康状况、营养均衡及视觉美感。标题设为“餐食评价”，body为菜名或食材状况，answer为健康及美味评价，explanation为营养建议或改进点，result为null。",
+    "oogiri": "图片为题材照片。请生成让人捧腹大笑的幽默回答。标题设为“AI大喜利”，body为null，answer为幽默回答，explanation为null，result为null。"
+  },
+  "explane": {
+    "test": "请拍摄试卷。我们将提供解释和答案。限于初中水平的五个科目，但某些数学符号可能无法读取。",
+    "translate": "请拍摄外国语言文本。我们将进行翻译。由于AI的准确性，可能并不总是正确的。",
+    "fashion": "请拍摄您的装束。我们将评估每一件时尚物品。",
+    "recipe": "请拍摄食材。我们将使用这些食材制作食谱。",
+    "calory": "请拍摄食物。我们将计算卡路里。由于可能存在的距离和大小测量误差，结果可能并不总是正确的。",
+    "trash": "请拍摄垃圾。我们将进行垃圾分类。请遵循当地政府的垃圾收集规定。",
+    "plants": "请拍摄植物。我们将评估其状况。",
+    "face_review": "请拍摄您的面部。我们将根据帅气、美丽、可爱等标准进行评分。这是AI的评估，请不要太在意。",
+    "hair_review": "请拍摄您的面部。我们将对您的发型进行评分。",
+    "makeup_review": "请拍摄您的面部。我们将对您的化妆进行评分。",
+    "program": "请拍摄编程要求的照片。\r\n将进行编程。由于AI精度的原因，结果不一定总是正确。",
+    "diary": "请拍摄事件的照片。\r\n将创建日记。",
+    "sns": "请拍摄适合SNS的图片。我们将生成吸引人的发布方案。",
+    "study_notes": "请拍摄笔记或备忘录。我们将评估学习效率并提出改进建议。",
+    "daily_mood": "请拍摄自拍或表情照片。我们将评估您的心情和健康状态。",
+    "meal_judgement": "请拍摄食物或料理照片。我们将评估健康状况、营养均衡及视觉美感。",
+    "oogiri": "请拍摄题材图片。我们将生成幽默回答。"
+  },
+  "short_explane": {
+    "test": "我们将告诉您问题的答案。",
+    "translate": "我们将翻译外国语言。",
+    "fashion": "我们将评估您的时尚。",
+    "recipe": "我们将使用食材制作食谱。",
+    "calory": "我们将计算食物的卡路里。",
+    "trash": "我们将进行垃圾分类。",
+    "plants": "我们将诊断植物的状况。",
+    "face_review": "我们将评估您的面部。",
+    "hair_review": "我们将评估您的发型。",
+    "makeup_review": "我们将评估您的化妆。",
+    "program": "编程",
+    "diary": "创建日记",
+    "sns": "生成SNS发布方案。",
+    "study_notes": "评估笔记。",
+    "daily_mood": "评估心情。",
+    "meal_judgement": "评估餐食。",
+    "oogiri": "生成AI大喜利。"
+  },
+  "instructions": {
+    "part1": "使用说明",
+    "part2": "拍摄照片，AI会进行回答。\r\n根据您的生活需求，使用它进行测试答案、外语翻译、时尚检查、从食材中创建食谱、计算食物卡路里、垃圾分类、植物护理等。\r\n注意：AI的回答可能并不总是准确的。\r\n另外，严禁滥用。"
+  },
+  "permissions": {
+    "camera_required": "需要相机权限。",
+    "camera_usage": "此应用需要访问相机拍摄照片。请在设置中更改权限。"
+  },
+  "actions": {
+    "cancel": "取消",
+    "go_to_settings": "前往设置",
+    "analysis_result": "分析结果",
+    "answer": "答案",
+    "explanation": "解释",
+    "ticket": "票",
+    "purchase_ticket": "购买的{{NAME}}可以超出每日AI使用限制使用。此外，不会显示广告，因此可以更快地查看结果。",
+    "ticket_note": "注意：使用{{NAME}}时不会出现视频广告，但分析可能需要一些时间。",
+    "bonus": "奖励"
+  },
+  "subscription": {
+    "per_month": "/月"
+  },
+  "legal": {
+    "terms_of_use": "使用条款",
+    "privacy_policy": "隐私政策"
+  },
+  "search": {
+    "filter": "搜索过滤器",
+    "select_item": "选择项目"
+  },
+  "analysis": {
+    "analyze_image": "分析图像",
+    "use_ticket_for_analysis": "使用票进行分析",
+    "number_of_tickets": "票数",
+    "watch_ad_for_analysis": "观看广告进行分析"
+  },
+  "permissions_alerts": {
+    "image_view_permission": "需要图像查看权限",
+    "refer_permission": "需要权限才能查看。请在设置中更改权限。"
+  },
+  "rewards": {
+    "five_star_rating": "如果您给五星评价，您将获得一张票。"
+  },
+  "errors": {
+    "not_enough_tickets": "票数不足。",
+    "daily_limit_exceeded": "您已超过今天的限额。",
+    "purchase_tickets": "您想购买票吗？",
+    "purchase": "购买",
+    "api_load_failed": "API加载失败。",
+    "analyzing": "分析中..."
+  }
+}
