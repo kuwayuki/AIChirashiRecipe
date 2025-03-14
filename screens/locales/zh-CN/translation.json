@@ -10,7 +10,7 @@
   "custom_prompt_user": "图像是{{name}}。请分析并返回{{result}}。对于标题，使用 '{{title}}'；对于正文，使用 '{{body}}'；对于答案，使用 '{{answer}}'；对于解释，使用 '{{explanation}}'；对于结果，使用 null。",
   "detail_or_easy": "简洁",
   "all": "全部",
-  "camera": "相机",
+  "history": "相机",
   "result": "结果",
   "settings": "设置",
   "mode": {

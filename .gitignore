@@ -8,6 +8,7 @@ node_modules/
 dist/
 web-build/
 
+
 # Native
 *.orig.*
 *.jks
@@ -55,3 +56,4 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+memo.txt

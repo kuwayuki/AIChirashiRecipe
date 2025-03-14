@@ -38,6 +38,7 @@ import InitialScreen from "./screens/InitialScreen";
 import SettingScreen from "./screens/SettingScreen";
 import PurchaseOptions from "./screens/PurchaseOptions";
 import { i18n } from "./screens/locales/i18n";
+import HistoryScreen from "./screens/HistoryScreen";
 // import i18n from "./screens/locales/i18n";
 // import en from "./screens/locales/en/translation.json";
 
@@ -47,11 +48,12 @@ export type RootStackParamList = {
   Initial: undefined;
   Camera: undefined;
   Result: {
-    result: any;
+    result: string;
     uri: string;
   };
   Setting: undefined;
   Purchase: undefined;
+  History: undefined;
 };
 
 export type ResultScreenNavigationProp = StackNavigationProp<
@@ -71,6 +73,7 @@ export type appContextState = {
   isSubPremium: boolean;
   permission: CameraPermissionResponse | null;
   imagePermission: MediaLibraryPermissionResponse | null;
+  historyList: History[];
 };
 export const AppContextState = React.createContext({} as appContextState);
 
@@ -85,13 +88,13 @@ export type appContextDispatch = {
   setPermission: (permission: CameraPermissionResponse) => void;
   setImagePermission: (imagePermission: MediaLibraryPermissionResponse) => void;
   requestPermission: () => Promise<void>;
+  setHistoryList: (historyList: History[]) => void;
 };
 export const AppContextDispatch = React.createContext({} as appContextDispatch);
 
 export type ApiBodyType = {
   key: string;
   promptUser?: string;
-  promptSystem?: string;
 };
 
 export type ApiResponseType = {
@@ -101,11 +104,12 @@ export type ApiResponseType = {
 
 export type OpenAiResult = {
   No: number;
-  title: string;
   body: string;
-  answer: string;
-  explanation: string;
-  result: boolean;
+};
+
+export type History = {
+  date: string;
+  body: string;
 };
 
 Amplify.configure({
@@ -150,6 +154,7 @@ const App: React.FC = () => {
   );
   const [imagePermission, setImagePermission] =
     useState<MediaLibraryPermissionResponse | null>(null);
+  const [historyList, setHistoryList] = useState<History[]>([]);
 
   useEffect(() => {
     const func = async () => {
@@ -297,6 +302,7 @@ const App: React.FC = () => {
       isSubPremium,
       permission,
       imagePermission,
+      historyList,
     }),
     [
       aiType,
@@ -308,6 +314,7 @@ const App: React.FC = () => {
       imagePermission,
       isPremium,
       isSubPremium,
+      historyList,
     ]
   );
 
@@ -325,6 +332,7 @@ const App: React.FC = () => {
           setPermission,
           setImagePermission,
           requestPermission,
+          setHistoryList,
         }}
       >
         <NavigationContainer>
@@ -346,10 +354,15 @@ const App: React.FC = () => {
               component={ResultScreen}
               options={{ headerShown: false, title: i18n.t("result") }}
             />
-            <Stack.Screen
+            {/* <Stack.Screen
               name="Setting"
               component={SettingScreen}
               options={{ title: i18n.t("settings") }}
+            /> */}
+            <Stack.Screen
+              name="History"
+              component={HistoryScreen}
+              options={{ title: i18n.t("history") }}
             />
             {/* <Stack.Screen
               name="Purchase"

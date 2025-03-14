@@ -5,7 +5,7 @@ import * as Crypto from "expo-crypto";
 const API_NAME = "IAnswer";
 const SECRET = "KUWAKUWA_@TENSAI";
 const API_URL = {
-  uploadS3Result: "/image/upload",
+  uploadS3Result: "/image/chirashi",
 };
 
 const hashCurrentDay = async (): Promise<string> => {
@@ -21,8 +21,7 @@ const hashCurrentDay = async (): Promise<string> => {
 
 export const aiAnswer = async (
   filePath: string,
-  PromptUser?: string,
-  PromptSystem?: string
+  PromptUser?: string
 ): Promise<any> => {
   const hash = await hashCurrentDay();
   const result = await post({
@@ -32,7 +31,6 @@ export const aiAnswer = async (
       body: {
         key: filePath,
         promptUser: PromptUser,
-        promptSystem: PromptSystem,
         auth: `${hash}`,
       } as ApiBodyType,
     },

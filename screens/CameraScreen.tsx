@@ -60,12 +60,12 @@ import {
 } from "expo-image-picker";
 import ConfirmDialog from "./ConfirmDialog";
 // TODO: Google Admob
-import { initializeInterstitialAd, showInterstitialAd } from "./AdmobInter";
-import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
-import {
-  rewardInitializeInterstitialAd,
-  showRewardInterstitialAd,
-} from "./AdmobRewardInter";
+// import { initializeInterstitialAd, showInterstitialAd } from "./AdmobInter";
+// import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
+// import {
+//   rewardInitializeInterstitialAd,
+//   showRewardInterstitialAd,
+// } from "./AdmobRewardInter";
 import { aiAnswer } from "./api";
 import { i18n } from "./locales/i18n";
 
@@ -104,18 +104,10 @@ const CameraScreen: React.FC = () => {
         (template) => template.AppName === appName
       );
       const settingAiType = prompt!.No;
-      if (settingAiType === PROMPT_TEMPLATES.ALL.No) {
-        const aiType = await getLocalStorage(KEY.AI_TYPE);
-        setMode(
-          aiType !== undefined ? Number(aiType) : PROMPT_TEMPLATES.TEST.No
-        );
-      } else {
-        setMode(settingAiType);
-      }
+      setMode(settingAiType);
       if (!appContextState.isPremium) {
-        // TODO: Google Admob
-        rewardInitializeInterstitialAd(appContextDispatch.setShowedAdmob);
-        initializeInterstitialAd(appContextDispatch.setShowedAdmob);
+        // rewardInitializeInterstitialAd(appContextDispatch.setShowedAdmob);
+        // initializeInterstitialAd(appContextDispatch.setShowedAdmob);
       }
     })();
   }, []);
@@ -210,10 +202,6 @@ const CameraScreen: React.FC = () => {
     }
   }, [modes, appContextDispatch]);
 
-  function toggleCameraFacing() {
-    setFacing((current: any) => (current === "back" ? "front" : "back"));
-  }
-
   const handlePinchGesture = (event: GestureEvent<any>) => {
     console.log(event);
     if (event.nativeEvent.state === State.ACTIVE) {
@@ -228,7 +216,6 @@ const CameraScreen: React.FC = () => {
     await appContextDispatch.requestPermission();
     if (cameraRef) {
       const photo = await cameraRef.takePictureAsync();
-      // photo = await cropImage(photo!.uri);
       setPhotoUri(photo!.uri);
       Image.getSize(photo!.uri, (width, height) => {
         setImageSize({ width, height });
@@ -236,21 +223,6 @@ const CameraScreen: React.FC = () => {
       // 確認ダイアログの表示
       setVisible(true);
     }
-  };
-
-  const cropImage = async (uri: string) => {
-    const manipResult = await ImageManipulator.manipulateAsync(
-      uri,
-      [
-        // { crop: { originX: 0, originY: 0, width: 1200, height: 1200 } },
-        {
-          extent: { backgroundColor: "blue", width: 800, height: 800 },
-        } as ImageManipulator.ActionExtent,
-      ],
-      { compress: 1, format: ImageManipulator.SaveFormat.JPEG }
-    );
-    setResizedPhotoUri(manipResult.uri);
-    return manipResult;
   };
 
   const getImageStyle = () => {
@@ -353,7 +325,7 @@ const CameraScreen: React.FC = () => {
       setLoading(true);
       if (!isPointUse) {
         // TODO: Google Admob
-        showInterstitialAd(appContextDispatch.setShowedAdmob);
+        // showInterstitialAd(appContextDispatch.setShowedAdmob);
         // showRewardInterstitialAd(appContextDispatch.setShowedAdmob);
       } else {
         // ポイント使用時は広告を見たとみなす
@@ -382,44 +354,36 @@ const CameraScreen: React.FC = () => {
         return;
       }
 
-      console.log(prompt!.PromptUser);
-      console.log(prompt!.PromptSystem);
-
-      const apiResponse = await aiAnswer(
-        filePath,
-        prompt!.PromptUser,
-        prompt!.PromptSystem
-      );
+      const apiResponse = await aiAnswer(filePath, prompt!.PromptUser);
       if (apiResponse.statusCode !== 200) {
         alert(i18n.t("errors.api_load_failed"));
         // returnMaxLimit();
         return;
       }
-      const bodyJson = await apiResponse.body.json();
-      console.log(bodyJson);
-      console.log(typeof bodyJson);
-      let body =
-        typeof bodyJson === "string"
-          ? JSON.parse(bodyJson)
-          : (bodyJson as any).body;
-      console.log(body);
-      // const bodyJson = await apiResponse.;
-      // console.log(bodyJson as ApiResponseType);
+      alert(apiResponse.body);
+      // const bodyJson = await apiResponse.body.json();
+      // console.log(bodyJson);
+      // console.log(typeof bodyJson);
+      // let body =
+      //   typeof bodyJson === "string"
+      //     ? JSON.parse(bodyJson)
+      //     : (bodyJson as any).body;
 
-      if (typeof body === "string") {
-        // const formattedResult = body.replace(/'/g, '"'); // シングルクォートをダブルクォートに変換
-        // console.log(formattedResult);
-        try {
-          body = JSON.parse(body);
-        } catch (error) {
-          console.error(error);
-          // alert("解析できませんでした。");
-          // return;
-        }
-      }
-      setBodyResult(body);
+      // if (typeof body === "string") {
+      //   // const formattedResult = body.replace(/'/g, '"'); // シングルクォートをダブルクォートに変換
+      //   // console.log(formattedResult);
+      //   try {
+      //     body = JSON.parse(body);
+      //   } catch (error) {
+      //     console.error(error);
+      //     // alert("解析できませんでした。");
+      //     // return;
+      //   }
+      // }
+      setBodyResult(apiResponse.body);
       setPhotoUriResult(tmpPhotoUri);
-      if (isPointUse) await pointsChange(-1);
+      // TODO: 後で直す
+      // if (isPointUse) await pointsChange(-1);
     } catch (error) {
       console.log(error);
     } finally {
@@ -493,23 +457,13 @@ const CameraScreen: React.FC = () => {
               <Text style={styles.headerHelpText}>{prompt?.ShortExplane}</Text>
             </View>
           )}
-          {CameraOrView(
-            // mode === PROMPT_TEMPLATES.FASSION.No ? (
-            <TouchableOpacity
-              style={styles.toogleFacing}
-              onPress={toggleCameraFacing}
-            >
-              <IconAtom name="camera-reverse" type="ionicon" size={20} />
-            </TouchableOpacity>
-            // ) : undefined
-          )}
           <TouchableOpacity
             style={styles.toogle}
             onPress={() => setDisplayExplane(!isDisplayExplane)}
           >
             <IconAtom
-              name="help"
-              type="ionicon"
+              name="history"
+              type="material-community"
               size={24}
               style={styles.toogleText}
             />
@@ -549,33 +503,31 @@ const CameraScreen: React.FC = () => {
               />
             </TouchableOpacity>
           </View>
-          {appContextState.settingAiType === PROMPT_TEMPLATES.ALL.No && (
-            <View style={styles.pickerContainer}>
-              <DropDownPickerAtom
-                value={mode}
-                setValue={setMode}
-                items={Object.values(PROMPT_TEMPLATES)
-                  .filter((allExclude) => allExclude.No > 0)
-                  .map((template: PROMPT_TEMPLATE) => ({
-                    label: template.Title,
-                    value: template.No,
-                    icon: template.Icon,
-                  }))}
-                open={isOpenDropbox}
-                setOpen={setOpenDropbox}
-              />
-            </View>
-          )}
+          {/* <View style={styles.pickerContainer}>
+            <DropDownPickerAtom
+              value={mode}
+              setValue={setMode}
+              items={Object.values(PROMPT_TEMPLATES)
+                .filter((allExclude) => allExclude.No > 0)
+                .map((template: PROMPT_TEMPLATE) => ({
+                  label: template.Title,
+                  value: template.No,
+                  icon: template.Icon,
+                }))}
+              open={isOpenDropbox}
+              setOpen={setOpenDropbox}
+            />
+          </View> */}
         </View>
       )}
       {!appContextState.isPremium && (
         // TODO: Google Admob
-        // <></>
-        <BannerAd
-          // unitId={TestIds.BANNER}
-          unitId={BANNER_UNIT_ID.BANNER}
-          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-        />
+        <></>
+        // <BannerAd
+        //   // unitId={TestIds.BANNER}
+        //   unitId={BANNER_UNIT_ID.BANNER}
+        //   size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+        // />
       )}
       {ConfirmDialog({
         visible,

@@ -10,7 +10,7 @@
   "custom_prompt_user": "画像は{{name}}です。解析して、{{result}}を返却してください。titleには「{{title}}」、bodyには「{{body}}」、answerには「{{answer}}」、explanationには「{{explanation}}」、resultにはnullをお願いします。",
   "detail_or_easy": "簡潔な",
   "all": "全て",
-  "camera": "カメラ",
+  "history": "履歴",
   "result": "結果",
   "settings": "設定",
   "mode": {

@@ -10,7 +10,7 @@
   "custom_prompt_user": "A imagem é de {{name}}. Por favor, analise e retorne {{result}}. Para título, use '{{title}}'; para corpo, use '{{body}}'; para resposta, use '{{answer}}'; para explicação, use '{{explanation}}'; e para resultado, use null.",
   "detail_or_easy": "conciso",
   "all": "Tudo",
-  "camera": "Câmera",
+  "history": "Câmera",
   "result": "Resultado",
   "settings": "Configurações",
   "mode": {

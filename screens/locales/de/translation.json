@@ -10,7 +10,7 @@
   "custom_prompt_user": "Das Bild ist von {{name}}. Bitte analysieren und geben Sie {{result}} zurück. Für den Titel verwenden Sie '{{title}}'; für den Text verwenden Sie '{{body}}'; für die Antwort verwenden Sie '{{answer}}'; für die Erklärung verwenden Sie '{{explanation}}'; und für das Ergebnis verwenden Sie null.",
   "detail_or_easy": "prägnant",
   "all": "Alle",
-  "camera": "Kamera",
+  "history": "Kamera",
   "result": "Ergebnis",
   "settings": "Einstellungen",
   "mode": {

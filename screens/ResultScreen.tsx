@@ -21,11 +21,13 @@ import {
 } from "../App";
 import IconAtom from "./IconAtom";
 import { BANNER_UNIT_ID } from "./constant";
-// TODO: Google Admob
-import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
+// import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { i18n } from "./locales/i18n";
+// Markdownコンポーネントのインポート
+import Markdown from "react-native-markdown-display";
 
 const { width: screenWidth } = Dimensions.get("window");
+
 const ResultScreen: React.FC = () => {
   const navigation =
     useNavigation<NavigationProp<RootStackParamList, "Result">>();
@@ -60,39 +62,7 @@ const ResultScreen: React.FC = () => {
       </View>
     );
 
-  const normalView = (item: OpenAiResult, index: number) => {
-    return (
-      <View key={index} style={styles.resultItem}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>{item.title} </Text>
-          {item.result != undefined && (
-            <Text style={item.result ? styles.answer : styles.answer_failed}>
-              {`（${item.result ? "〇" : "×"}）`}
-            </Text>
-          )}
-        </View>
-        {item.body && <Text style={styles.body}>{item.body}</Text>}
-        {item.answer && (
-          <Text
-            selectable={true}
-            style={item.result ? styles.answer : styles.answer_failed}
-          >
-            {i18n.t("actions.answer")}
-            {item.answer}
-          </Text>
-        )}
-        {item.explanation && (
-          <Text style={styles.explanation}>
-            {i18n.t("actions.explanation")}
-            {item.explanation}
-          </Text>
-        )}
-      </View>
-    );
-  };
   const getImageStyle = (imageSize?: { width: number; height: number }) => {
-    console.log("getImageStyle");
-    console.log(imageSize);
     if (!imageSize) {
       return styles.preview;
     }
@@ -114,36 +84,25 @@ const ResultScreen: React.FC = () => {
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         {!appContextState.isPremium && (
-          // TODO: Google Admob
-          // <></>
           <View style={styles.bannerContainer}>
-            <BannerAd
-              // unitId={TestIds.BANNER}
+            {/* <BannerAd
               unitId={BANNER_UNIT_ID.BANNER_2}
               size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-            />
+            /> */}
           </View>
         )}
-        {result.map((item: OpenAiResult, index: number) =>
-          normalView(item, index)
-        )}
-        <>
-          <Image source={{ uri: uri }} style={{ ...imageSize }} />
-        </>
+        <Markdown style={{ body: styles.body }}>{result}</Markdown>
+        <Image source={{ uri: uri }} style={{ ...imageSize }} />
         {!appContextState.isPremium && (
-          // TODO: Google Admob
-          // <></>
           <>
-            <BannerAd
-              // unitId={TestIds.BANNER}
+            {/* <BannerAd
               unitId={BANNER_UNIT_ID.BANNER_4}
               size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
             />
             <BannerAd
-              // unitId={TestIds.BANNER}
               unitId={BANNER_UNIT_ID.BANNER_5}
               size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-            />
+            /> */}
           </>
         )}
       </ScrollView>
@@ -212,40 +171,10 @@ const styles = StyleSheet.create({
     elevation: 5,
     zIndex: 1,
   },
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 8,
-  },
   body: {
     fontSize: 16,
     marginBottom: 8,
   },
-  answer: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 8,
-    color: "green",
-  },
-  answer_failed: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 8,
-    color: "red",
-  },
-  explanation: {
-    fontSize: 14,
-    marginBottom: 8,
-    color: "#555",
-  },
-  result: {
-    fontSize: 14,
-    fontWeight: "bold",
-    color: "green",
-  },
 });
+
 export default ResultScreen;

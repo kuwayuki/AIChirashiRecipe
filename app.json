@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "IAnswer",
-    "slug": "IAnswer",
-    "version": "1.0.25",
+    "name": "AIChirashiRecipe",
+    "slug": "AIChirashiRecipe",
+    "version": "1.0.2",
     "ios": {
-      "buildNumber": "25",
+      "buildNumber": "3",
       "supportsTablet": true,
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-2103807205659646~3048157861"
       },
-      "bundleIdentifier": "com.kuwahara.IAnswer",
+      "bundleIdentifier": "com.kuwahara.AIChirashiRecipe",
       "infoPlist": {
         "CFBundleAllowMixedLocalizations": true,
         "ITSAppUsesNonExemptEncryption": false
@@ -48,6 +48,9 @@
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO",
+        "com.google.android.gms.permission.AD_ID",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
         "com.google.android.gms.permission.AD_ID"
       ]
     },
@@ -56,16 +59,16 @@
     },
     "extra": {
       "eas": {
-        "projectId": "3845abf4-c362-4dbd-9e69-9816fc62c837",
         "awsAccessKeyId": "${ACCESS_KEY}",
-        "awsSecretAccessKey": "${SECRET_ACCESS_KEY}"
+        "awsSecretAccessKey": "${SECRET_ACCESS_KEY}",
+        "projectId": "a7add085-5945-4e80-b0b9-6abdc5ba5d65"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/3845abf4-c362-4dbd-9e69-9816fc62c837"
+      "url": "https://u.expo.dev/a7add085-5945-4e80-b0b9-6abdc5ba5d65"
     }
   },
   "react-native-google-mobile-ads": {
