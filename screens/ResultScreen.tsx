@@ -24,7 +24,7 @@ import { BANNER_UNIT_ID } from "./constant";
 // import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { i18n } from "./locales/i18n";
 // Markdownコンポーネントのインポート
-import Markdown from "react-native-markdown-display";
+import MarkdownAtom from "./MarkdownAtom";
 
 const { width: screenWidth } = Dimensions.get("window");
 
@@ -45,22 +45,13 @@ const ResultScreen: React.FC = () => {
     const size = Image.getSize(uri, (width, height) => {
       return { width, height };
     });
+    console.log(size);
     try {
-      setImageSize(getImageStyle(size));
+      // setImageSize(getImageStyle(size));
     } catch (error) {
-      setImageSize(getImageStyle(size));
+      // setImageSize(getImageStyle(size));
     }
   }, [uri]);
-
-  if (!Array.isArray(result))
-    return (
-      <View style={styles.container}>
-        <Text style={styles.resultItem}>
-          {i18n.t("actions.analysis_result")}
-          {result}
-        </Text>
-      </View>
-    );
 
   const getImageStyle = (imageSize?: { width: number; height: number }) => {
     if (!imageSize) {
@@ -91,7 +82,7 @@ const ResultScreen: React.FC = () => {
             /> */}
           </View>
         )}
-        <Markdown style={{ body: styles.body }}>{result}</Markdown>
+        <MarkdownAtom>{result}</MarkdownAtom>
         <Image source={{ uri: uri }} style={{ ...imageSize }} />
         {!appContextState.isPremium && (
           <>
@@ -133,6 +124,8 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
     top: 65,
+    margin: 10,
+    marginBottom: 80,
   },
   bannerContainer: {
     marginTop: 16,
@@ -170,10 +163,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     zIndex: 1,
-  },
-  body: {
-    fontSize: 16,
-    marginBottom: 8,
   },
 });
 

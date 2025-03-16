@@ -73,7 +73,7 @@ export type appContextState = {
   isSubPremium: boolean;
   permission: CameraPermissionResponse | null;
   imagePermission: MediaLibraryPermissionResponse | null;
-  historyList: History[];
+  historyList: string[];
 };
 export const AppContextState = React.createContext({} as appContextState);
 
@@ -88,7 +88,7 @@ export type appContextDispatch = {
   setPermission: (permission: CameraPermissionResponse) => void;
   setImagePermission: (imagePermission: MediaLibraryPermissionResponse) => void;
   requestPermission: () => Promise<void>;
-  setHistoryList: (historyList: History[]) => void;
+  setHistoryList: (historyList: string[]) => void;
 };
 export const AppContextDispatch = React.createContext({} as appContextDispatch);
 
@@ -104,11 +104,6 @@ export type ApiResponseType = {
 
 export type OpenAiResult = {
   No: number;
-  body: string;
-};
-
-export type History = {
-  date: string;
   body: string;
 };
 
@@ -154,7 +149,7 @@ const App: React.FC = () => {
   );
   const [imagePermission, setImagePermission] =
     useState<MediaLibraryPermissionResponse | null>(null);
-  const [historyList, setHistoryList] = useState<History[]>([]);
+  const [historyList, setHistoryList] = useState<string[]>([]);
 
   useEffect(() => {
     const func = async () => {
@@ -206,6 +201,9 @@ const App: React.FC = () => {
       (template) => template.AppName === appName
     );
     setSettingAiType(prompt!.No);
+    getLocalStorage(KEY.HISTORY_LIST).then((currentList) => {
+      if (currentList) setHistoryList(currentList.split("\n"));
+    });
   }, []);
 
   // useEffect(() => {
@@ -354,11 +352,11 @@ const App: React.FC = () => {
               component={ResultScreen}
               options={{ headerShown: false, title: i18n.t("result") }}
             />
-            {/* <Stack.Screen
+            <Stack.Screen
               name="Setting"
               component={SettingScreen}
               options={{ title: i18n.t("settings") }}
-            /> */}
+            />
             <Stack.Screen
               name="History"
               component={HistoryScreen}

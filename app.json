@@ -2,12 +2,12 @@
   "expo": {
     "name": "AIChirashiRecipe",
     "slug": "AIChirashiRecipe",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "ios": {
-      "buildNumber": "3",
+      "buildNumber": "4",
       "supportsTablet": true,
       "config": {
-        "googleMobileAdsAppId": "ca-app-pub-2103807205659646~3048157861"
+        "googleMobileAdsAppId": "ca-app-pub-2103807205659646~3017378716"
       },
       "bundleIdentifier": "com.kuwahara.AIChirashiRecipe",
       "infoPlist": {
@@ -17,20 +17,14 @@
     },
     "locales": {
       "ja": "./screens/locales/ja/translation.json",
-      "en": "./screens/locales/en/translation.json",
-      "de": "./screens/locales/de/translation.json",
-      "es": "./screens/locales/es/translation.json",
-      "fr": "./screens/locales/fr/translation.json",
-      "ko": "./screens/locales/ko/translation.json",
-      "pt": "./screens/locales/pt-BR/translation.json",
-      "zh": "./screens/locales/zh-CN/translation.json",
-      "hi": "./screens/locales/hi/translation.json"
+      "en": "./screens/locales/en/translation.json"
     },
     "plugins": [
       ["expo-tracking-transparency"],
       ["expo-camera"],
       ["expo-image-picker"],
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-localization"
     ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -73,7 +67,7 @@
   },
   "react-native-google-mobile-ads": {
     "android_app_id": "ca-app-pub-xxxxxxxx~xxxxxxxx",
-    "ios_app_id": "ca-app-pub-2103807205659646~3048157861",
+    "ios_app_id": "ca-app-pub-2103807205659646~3017378716",
     "delay_app_measurement_init": true,
     "user_tracking_usage_description": "「許可」を押すと、他社のデータも活用し、よりお客様に適した広告が表示されます。"
   }

@@ -169,14 +169,14 @@ const PurchaseOptions: React.FC = () => {
       <View style={styles.linkContainer}>
         <TouchableOpacity
           onPress={() =>
-            openURL("https://kuwank.hatenablog.com/entry/2024/06/03/141839")
+            openURL("https://kuwank.hatenablog.com/entry/2025/03/15/231212")
           }
         >
           <Text style={styles.linkText}>{i18n.t("legal.terms_of_use")}　</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() =>
-            openURL("https://kuwank.hatenablog.com/entry/2024/06/03/141528")
+            openURL("https://kuwank.hatenablog.com/entry/2025/03/15/231720")
           }
         >
           <Text style={styles.linkText}>

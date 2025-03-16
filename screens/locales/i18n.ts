@@ -1,13 +1,6 @@
 import { getLocales, getCalendars } from "expo-localization";
 import ja from "./ja/translation.json";
 import en from "./en/translation.json";
-import de from "./de/translation.json";
-import es from "./es/translation.json";
-import fr from "./fr/translation.json";
-import ko from "./ko/translation.json";
-import pt from "./pt-BR/translation.json";
-import zh from "./zh-CN/translation.json";
-import hi from "./hi/translation.json";
 import { I18n } from "i18n-js";
 
 // Set the key-value pairs for the different languages you want to support.
@@ -32,4 +25,4 @@ export const {
 export const { calendar, timeZone, uses24hourClock, firstWeekday } =
   getCalendars()[0];
 
-i18n.translations = { ja, en, de, es, fr, ko, pt, zh, hi };
+i18n.translations = { ja, en };

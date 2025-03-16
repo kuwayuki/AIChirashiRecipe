@@ -2,7 +2,7 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React, { useContext } from "react";
 import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
 import { AppContextState, RootStackParamList } from "../App";
-import PurchaseOptions from "./PurchaseOptions";
+// import PurchaseOptions from "./PurchaseOptions";
 
 const { width: screenWidth } = Dimensions.get("window");
 const SettingScreen: React.FC = () => {
@@ -13,7 +13,7 @@ const SettingScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
-        <PurchaseOptions />
+        {/* <PurchaseOptions /> */}
       </ScrollView>
     </View>
   );

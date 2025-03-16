@@ -339,7 +339,6 @@ const CameraScreen: React.FC = () => {
           })
         : null;
       const response = await fetch(tmpPhotoUri);
-      console.log(response);
       const blob = await response.blob();
       const fileName = tmpPhotoUri.split("/").pop() || "image.jpg";
 
@@ -354,33 +353,34 @@ const CameraScreen: React.FC = () => {
         return;
       }
 
-      const apiResponse = await aiAnswer(filePath, prompt!.PromptUser);
+      const dateString = new Date().toISOString().split("T")[0];
+      const updatedPromptUser =
+        prompt!.PromptUser +
+        `\r\n・今日は${dateString}なので日付が過ぎている食材は対象外です。`;
+      console.log(updatedPromptUser);
+      const apiResponse = await aiAnswer(filePath, updatedPromptUser);
       if (apiResponse.statusCode !== 200) {
         alert(i18n.t("errors.api_load_failed"));
         // returnMaxLimit();
         return;
       }
-      alert(apiResponse.body);
-      // const bodyJson = await apiResponse.body.json();
-      // console.log(bodyJson);
-      // console.log(typeof bodyJson);
-      // let body =
-      //   typeof bodyJson === "string"
-      //     ? JSON.parse(bodyJson)
-      //     : (bodyJson as any).body;
+      const bodyJson = await apiResponse.body.json();
+      const markdown = bodyJson.body
+        .replace(/^###.*?```|```$/gs, "")
+        .replace(/^markdown|MARKDOWN$/i, "");
+      console.log(markdown);
+      setBodyResult(markdown);
 
-      // if (typeof body === "string") {
-      //   // const formattedResult = body.replace(/'/g, '"'); // シングルクォートをダブルクォートに変換
-      //   // console.log(formattedResult);
-      //   try {
-      //     body = JSON.parse(body);
-      //   } catch (error) {
-      //     console.error(error);
-      //     // alert("解析できませんでした。");
-      //     // return;
-      //   }
-      // }
-      setBodyResult(apiResponse.body);
+      getLocalStorage(KEY.HISTORY_LIST).then((currentList) => {
+        const updatedList =
+          currentList && !currentList.includes(dateString)
+            ? `${dateString}\n${currentList}`
+            : currentList || dateString;
+        saveLocalStorage(KEY.HISTORY_LIST, updatedList);
+        appContextDispatch.setHistoryList(updatedList.split("\n"));
+      });
+      saveLocalStorage(dateString, markdown);
+
       setPhotoUriResult(tmpPhotoUri);
       // TODO: 後で直す
       // if (isPointUse) await pointsChange(-1);
@@ -407,6 +407,10 @@ const CameraScreen: React.FC = () => {
   //   //   </View>
   //   // );
   // }
+
+  function toggleCameraFacing() {
+    setFacing((current: any) => (current === "back" ? "front" : "back"));
+  }
 
   const CameraOrView = (child?: ReactNode) => {
     if (appContextState.permission?.granted) {
@@ -457,14 +461,25 @@ const CameraScreen: React.FC = () => {
               <Text style={styles.headerHelpText}>{prompt?.ShortExplane}</Text>
             </View>
           )}
+          {
+            CameraOrView()
+            // mode === PROMPT_TEMPLATES.FASSION.No ? (
+            // <TouchableOpacity
+            //   style={styles.toogleFacing}
+            //   onPress={toggleCameraFacing}
+            // >
+            //   <IconAtom name="camera-reverse" type="ionicon" size={20} />
+            // </TouchableOpacity>
+            // ) : undefined
+          }
           <TouchableOpacity
             style={styles.toogle}
-            onPress={() => setDisplayExplane(!isDisplayExplane)}
+            onPress={() => navigation.navigate("History")}
           >
             <IconAtom
               name="history"
               type="material-community"
-              size={24}
+              size={30}
               style={styles.toogleText}
             />
           </TouchableOpacity>
@@ -501,6 +516,17 @@ const CameraScreen: React.FC = () => {
                 size={19}
                 style={styles.settingButtonText}
               />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.pickerContainer}>
+            <TouchableOpacity
+              onPress={() =>
+                Linking.openURL(
+                  "https://www.shufoo.net/pntweb/shopDetail/179416/"
+                )
+              }
+            >
+              <Text>Googleへ移動</Text>
             </TouchableOpacity>
           </View>
           {/* <View style={styles.pickerContainer}>
@@ -668,7 +694,7 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     position: "absolute",
-    bottom: 20,
+    bottom: 30,
     color: "white",
     backgroundColor: "rgba(255, 255, 255, 0)", // 透明度を下げる
     borderRadius: 10,
