@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import { KEY, saveLocalStorage } from "./utils";
 
 interface LinkDialogProps {
   visible: boolean;
@@ -42,6 +43,7 @@ const LinkDialog: React.FC<LinkDialogProps> = ({
               style={styles.modalButton}
               onPress={() => {
                 setRegisteredLink(tempLink);
+                saveLocalStorage(KEY.LINK_AD, tempLink);
                 onClose();
               }}
             >

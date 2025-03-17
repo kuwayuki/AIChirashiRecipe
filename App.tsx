@@ -93,7 +93,7 @@ export type appContextDispatch = {
   requestPermission: () => Promise<void>;
   setHistoryList: (historyList: string[]) => void;
   setRegisteredLink: (registeredLink: string) => void;
-  setTempLink: (registeredLink: string) => void;
+  setTempLink: (tempLink: string) => void;
   setShowLinkDialog: (showLinkDialog: boolean) => void;
 };
 export const AppContextDispatch = React.createContext({} as appContextDispatch);

@@ -62,13 +62,12 @@ import {
 } from "expo-image-picker";
 import ConfirmDialog from "./ConfirmDialog";
 import LinkDialog from "./LinkDialog";
-// TODO: Google Admob
-// import { initializeInterstitialAd, showInterstitialAd } from "./AdmobInter";
-// import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
-// import {
-//   rewardInitializeInterstitialAd,
-//   showRewardInterstitialAd,
-// } from "./AdmobRewardInter";
+import { initializeInterstitialAd, showInterstitialAd } from "./AdmobInter";
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
+import {
+  rewardInitializeInterstitialAd,
+  showRewardInterstitialAd,
+} from "./AdmobRewardInter";
 import { aiAnswer } from "./api";
 import { i18n } from "./locales/i18n";
 
@@ -109,8 +108,8 @@ const CameraScreen: React.FC = () => {
       const settingAiType = prompt!.No;
       setMode(settingAiType);
       if (!appContextState.isPremium) {
-        // rewardInitializeInterstitialAd(appContextDispatch.setShowedAdmob);
-        // initializeInterstitialAd(appContextDispatch.setShowedAdmob);
+        rewardInitializeInterstitialAd(appContextDispatch.setShowedAdmob);
+        initializeInterstitialAd(appContextDispatch.setShowedAdmob);
       }
     })();
   }, []);
@@ -328,8 +327,8 @@ const CameraScreen: React.FC = () => {
       setLoading(true);
       if (!isPointUse) {
         // TODO: Google Admob
-        // showInterstitialAd(appContextDispatch.setShowedAdmob);
-        // showRewardInterstitialAd(appContextDispatch.setShowedAdmob);
+        showInterstitialAd(appContextDispatch.setShowedAdmob);
+        showRewardInterstitialAd(appContextDispatch.setShowedAdmob);
       } else {
         // ポイント使用時は広告を見たとみなす
         appContextDispatch.setShowedAdmob(true);
@@ -538,7 +537,11 @@ const CameraScreen: React.FC = () => {
                 appContextDispatch.setShowLinkDialog(true);
               }}
             >
-              <Text>広告リンクへ移動</Text>
+              <Text>
+                {appContextState.registeredLink
+                  ? "広告リンクへ移動"
+                  : "広告リンクを登録"}
+              </Text>
             </TouchableOpacity>
           </View>
           {/* <View style={styles.pickerContainer}>
@@ -560,12 +563,12 @@ const CameraScreen: React.FC = () => {
       )}
       {!appContextState.isPremium && (
         // TODO: Google Admob
-        <></>
-        // <BannerAd
-        //   // unitId={TestIds.BANNER}
-        //   unitId={BANNER_UNIT_ID.BANNER}
-        //   size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-        // />
+        // <></>
+        <BannerAd
+          // unitId={TestIds.BANNER}
+          unitId={BANNER_UNIT_ID.BANNER}
+          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+        />
       )}
       {ConfirmDialog({
         visible,

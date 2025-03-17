@@ -21,10 +21,10 @@ import {
 } from "../App";
 import IconAtom from "./IconAtom";
 import { BANNER_UNIT_ID } from "./constant";
-// import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { i18n } from "./locales/i18n";
 // Markdownコンポーネントのインポート
 import MarkdownAtom from "./MarkdownAtom";
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 
 const { width: screenWidth } = Dimensions.get("window");
 
@@ -76,24 +76,24 @@ const ResultScreen: React.FC = () => {
       <ScrollView style={styles.scrollContainer}>
         {!appContextState.isPremium && (
           <View style={styles.bannerContainer}>
-            {/* <BannerAd
+            <BannerAd
               unitId={BANNER_UNIT_ID.BANNER_2}
               size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-            /> */}
+            />
           </View>
         )}
         <MarkdownAtom>{result}</MarkdownAtom>
         <Image source={{ uri: uri }} style={{ ...imageSize }} />
         {!appContextState.isPremium && (
           <>
-            {/* <BannerAd
+            <BannerAd
               unitId={BANNER_UNIT_ID.BANNER_4}
               size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
             />
             <BannerAd
               unitId={BANNER_UNIT_ID.BANNER_5}
               size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-            /> */}
+            />
           </>
         )}
       </ScrollView>
