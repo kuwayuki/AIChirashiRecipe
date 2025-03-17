@@ -74,6 +74,9 @@ export type appContextState = {
   permission: CameraPermissionResponse | null;
   imagePermission: MediaLibraryPermissionResponse | null;
   historyList: string[];
+  registeredLink: string;
+  tempLink: string;
+  showLinkDialog: boolean;
 };
 export const AppContextState = React.createContext({} as appContextState);
 
@@ -89,6 +92,9 @@ export type appContextDispatch = {
   setImagePermission: (imagePermission: MediaLibraryPermissionResponse) => void;
   requestPermission: () => Promise<void>;
   setHistoryList: (historyList: string[]) => void;
+  setRegisteredLink: (registeredLink: string) => void;
+  setTempLink: (registeredLink: string) => void;
+  setShowLinkDialog: (showLinkDialog: boolean) => void;
 };
 export const AppContextDispatch = React.createContext({} as appContextDispatch);
 
@@ -150,6 +156,9 @@ const App: React.FC = () => {
   const [imagePermission, setImagePermission] =
     useState<MediaLibraryPermissionResponse | null>(null);
   const [historyList, setHistoryList] = useState<string[]>([]);
+  const [registeredLink, setRegisteredLink] = useState<string>("");
+  const [tempLink, setTempLink] = useState<string>("");
+  const [showLinkDialog, setShowLinkDialog] = useState<boolean>(false);
 
   useEffect(() => {
     const func = async () => {
@@ -201,6 +210,9 @@ const App: React.FC = () => {
       (template) => template.AppName === appName
     );
     setSettingAiType(prompt!.No);
+    getLocalStorage(KEY.LINK_AD).then((linkAd) => {
+      if (linkAd) setRegisteredLink(linkAd);
+    });
     getLocalStorage(KEY.HISTORY_LIST).then((currentList) => {
       if (currentList) setHistoryList(currentList.split("\n"));
     });
@@ -301,6 +313,9 @@ const App: React.FC = () => {
       permission,
       imagePermission,
       historyList,
+      registeredLink,
+      tempLink,
+      showLinkDialog,
     }),
     [
       aiType,
@@ -313,6 +328,9 @@ const App: React.FC = () => {
       isPremium,
       isSubPremium,
       historyList,
+      registeredLink,
+      tempLink,
+      showLinkDialog,
     ]
   );
 
@@ -331,6 +349,9 @@ const App: React.FC = () => {
           setImagePermission,
           requestPermission,
           setHistoryList,
+          setRegisteredLink,
+          setTempLink,
+          setShowLinkDialog,
         }}
       >
         <NavigationContainer>

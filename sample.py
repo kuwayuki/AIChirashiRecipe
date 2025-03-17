@@ -158,28 +158,41 @@ def analyze_image_with_langchain(image_base64: str, event) -> str:
     )  # 今日の日付を'YYYY-MM-DD'形式で変数に格納    # イベントからプロンプト（ユーザー側・システム側）を取得
     prompt = event.get(
         "promptUser",
-        f"あなたはプロの料理人であり、調理栄養士でもあります。\r\n記載されている食材から利用したレシピを5つ、使用材料と調理方法も含めて教えてください。\r\n・markdown形式のみの返却で余計な返答や文言は不要です。\r\n・使用材料がちらしに掲載されている場合はmd記法の太字で、食材名、価格、数量、（販売日が決まっている場合のみ日付も）を記載してください。\r\n・調味料などを使う場合は具体的な容量やグラム数などを調理方法に記載してください。\r\n・今日は${current_date}なので日付が過ぎている食材は対象外です。",
+        f"記載されている食材名、価格、数量、（販売日が決まっている場合のみ日付も）を記載してください。\r\n・markdown形式のみの返却で余計な返答や文言は不要です。\r\n・今日は${current_date}なので日付が過ぎている食材は対象外です。",
     )
     provider = os.environ.get("PROVIDER", PROVIDER)
     model = os.environ.get("GPT_MODEL", GPT_MODEL)
 
-    llm = get_llm(provider=provider, model=model)
-
     # システムメッセージと、人間側のメッセージ（テキスト＋画像）を作成
-    human_content = [
-        {"type": "text", "text": prompt},
-        {"type": "image_url", "image_url": {"url": image_base64}},
-    ]
-    human_message = HumanMessage(content=human_content)
-
-    # LangChain の LLM を呼び出し、レスポンスを取得
-    response = llm.invoke([human_message])
-
+    human_message = HumanMessage(
+        content=[
+            {"type": "text", "text": prompt},
+            {"type": "image_url", "image_url": {"url": image_base64}},
+        ]
+    )
+    response = safe_invoke(
+        [human_message],
+        provider,
+        model,
+    )
     # 取得したレスポンスを別のAIで評価
-    evaluation_prompt = f"以下の内容を評価してください:\n\n{response.content}"
-    evaluation_llm = get_llm(provider=provider, model=model)
-    evaluation_response = evaluation_llm.invoke([HumanMessage(content=[{"type": "text", "text": evaluation_prompt}])])
-
+    evaluation_prompt = (
+        "あなたは手軽に美味しい料理の作り方が分かるプロの料理人です。"
+        "記載されている食材を複数、または一部を利用して、低コストでとても美味しい節約レシピを5つ考えてください。"
+        "誰でも簡単に作れるレシピを考案し、工程をシンプルにしてください.\n\n"
+        "・Markdown形式のみで出力してください。レシピ名は`###`で先頭にインデックス番号、"
+        "使用材料は箇条書き（`-`）、調理方法は番号付きリスト（`1.`）で記載し、"
+        "絵文字を適宜使用してください.\n"
+        "・掲載されている食材は、**md記法の太字** で食材名、価格、数量、（販売日が決まっている場合は日付）を記載してください.\n"
+        "・調味料を使う場合は具体的な容量やグラム数を調理方法に記載してください.\n\n"
+        f"{response.content}"
+    )
+    # evaluation_prompt = f"あなたはプロの料理人であり、調理栄養士でもあります。\r\n記載されている食材から利用したレシピを5つ、使用材料と調理方法も含めて教えてください。\r\n・markdown形式のみの返却で余計な返答や文言は不要です。レシピ名は###、使用材料は箇条書きリスト(ハイフン-)、調理方法は番号付きリスト(1.)、絵文字などは使ってください。\r\n・使用材料がちらしに掲載されている場合はmd記法の太字で、食材名、価格、数量、（販売日が決まっている場合のみ日付も）を記載してください。\r\n・調味料などを使う場合は具体的な容量やグラム数などを調理方法に記載してください。\n\n{response.content}"
+    evaluation_response = safe_invoke(
+        [HumanMessage(content=[{"type": "text", "text": evaluation_prompt}])],
+        provider,
+        model,
+    )
     return evaluation_response.content
 
 
@@ -216,9 +229,11 @@ def get_chain(
     llm_instance = get_llm(provider, model=model, **kwargs)
     return create_chain(llm_instance, prompt_str, output_key)
 
+
 def create_chain(llm, prompt_str: str, output_key: str):
     prompt_template = ChatPromptTemplate.from_messages([("human", prompt_str)])
     return LLMChain(llm=llm, prompt=prompt_template, output_key=output_key)
+
 
 def sequentialChain(
     topic: str,
@@ -254,3 +269,24 @@ def sequentialChain(
     result = overall_chain.invoke({"topic": topic})
     print(result["explanation"])
     print(result["example"])
+
+
+def safe_invoke(
+    messages,
+    provider,
+    model,
+    fallback_message="Gemini使用制限超過のため、openaiで再試行します。",
+):
+    try:
+        llm = get_llm(provider=provider, model=model)
+        response = llm.invoke(messages)
+        return response
+    except Exception as e:
+        if provider == "gemini":
+            print(fallback_message)
+            provider = "openai"
+            llm = get_llm(provider=provider, model=model)
+            response = llm.invoke(messages)
+            return response
+        else:
+            raise e

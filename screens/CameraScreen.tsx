@@ -22,8 +22,10 @@ import {
   Linking,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
+  Modal,
 } from "react-native";
 import {
   ApiBodyType,
@@ -59,6 +61,7 @@ import {
   requestMediaLibraryPermissionsAsync,
 } from "expo-image-picker";
 import ConfirmDialog from "./ConfirmDialog";
+import LinkDialog from "./LinkDialog";
 // TODO: Google Admob
 // import { initializeInterstitialAd, showInterstitialAd } from "./AdmobInter";
 // import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
@@ -508,7 +511,7 @@ const CameraScreen: React.FC = () => {
               />
             </TouchableOpacity>
           </View>
-          <View style={styles.settingButtonContainer}>
+          {/* <View style={styles.settingButtonContainer}>
             <TouchableOpacity onPress={() => navigation.navigate("Setting")}>
               <IconAtom
                 name="settings"
@@ -517,16 +520,25 @@ const CameraScreen: React.FC = () => {
                 style={styles.settingButtonText}
               />
             </TouchableOpacity>
-          </View>
+          </View> */}
           <View style={styles.pickerContainer}>
             <TouchableOpacity
-              onPress={() =>
-                Linking.openURL(
-                  "https://www.shufoo.net/pntweb/shopDetail/179416/"
-                )
-              }
+              onPress={() => {
+                if (!appContextState.registeredLink) {
+                  appContextDispatch.setTempLink("");
+                  appContextDispatch.setShowLinkDialog(true);
+                } else {
+                  Linking.openURL(appContextState.registeredLink);
+                }
+              }}
+              onLongPress={() => {
+                appContextDispatch.setTempLink(
+                  appContextState.registeredLink || ""
+                );
+                appContextDispatch.setShowLinkDialog(true);
+              }}
             >
-              <Text>Googleへ移動</Text>
+              <Text>広告リンクへ移動</Text>
             </TouchableOpacity>
           </View>
           {/* <View style={styles.pickerContainer}>
@@ -571,6 +583,15 @@ const CameraScreen: React.FC = () => {
           setVisible(false);
         },
       })}
+      {appContextState.showLinkDialog && (
+        <LinkDialog
+          visible={appContextState.showLinkDialog}
+          tempLink={appContextState.tempLink || ""}
+          setTempLink={appContextDispatch.setTempLink}
+          setRegisteredLink={appContextDispatch.setRegisteredLink}
+          onClose={() => appContextDispatch.setShowLinkDialog(false)}
+        />
+      )}
     </View>
   );
 };

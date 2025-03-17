@@ -11,6 +11,7 @@ export const KEY = {
   POINTS_LIMIT: "POINTS_LIMIT",
   INIT_REVIEW: "INIT_REVIEW",
   HISTORY_LIST: "HISTORY_LIST2",
+  LINK_AD: "LINK_AD",
 };
 
 export const DEBUG_MODE = {
