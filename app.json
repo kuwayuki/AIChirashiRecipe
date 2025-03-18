@@ -2,9 +2,9 @@
   "expo": {
     "name": "AIChirashiRecipe",
     "slug": "AIChirashiRecipe",
-    "version": "1.0.6",
+    "version": "1.0.8",
     "ios": {
-      "buildNumber": "7",
+      "buildNumber": "8",
       "supportsTablet": true,
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-2103807205659646~3017378716"
