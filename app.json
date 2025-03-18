@@ -2,9 +2,9 @@
   "expo": {
     "name": "AIChirashiRecipe",
     "slug": "AIChirashiRecipe",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "ios": {
-      "buildNumber": "6",
+      "buildNumber": "7",
       "supportsTablet": true,
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-2103807205659646~3017378716"
@@ -12,7 +12,9 @@
       "bundleIdentifier": "com.kuwahara.AIChirashiRecipe",
       "infoPlist": {
         "CFBundleAllowMixedLocalizations": true,
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSCameraUsageDescription": "撮影写真を解析するために、カメラの許可が必要です。",
+        "NSPhotoLibraryUsageDescription": "保存済みの写真を解析するために、写真ライブラリの許可が必要です。"
       }
     },
     "locales": {
