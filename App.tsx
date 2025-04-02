@@ -77,6 +77,7 @@ export type appContextState = {
   registeredLink: string;
   tempLink: string;
   showLinkDialog: boolean;
+  imagePhotoUri: string | null;
 };
 export const AppContextState = React.createContext({} as appContextState);
 
@@ -95,6 +96,7 @@ export type appContextDispatch = {
   setRegisteredLink: (registeredLink: string) => void;
   setTempLink: (tempLink: string) => void;
   setShowLinkDialog: (showLinkDialog: boolean) => void;
+  setImagePhotoUri: (tempLink: string | null) => void;
 };
 export const AppContextDispatch = React.createContext({} as appContextDispatch);
 
@@ -159,6 +161,7 @@ const App: React.FC = () => {
   const [registeredLink, setRegisteredLink] = useState<string>("");
   const [tempLink, setTempLink] = useState<string>("");
   const [showLinkDialog, setShowLinkDialog] = useState<boolean>(false);
+  const [imagePhotoUri, setImagePhotoUri] = useState<string | null>(null);
 
   useEffect(() => {
     const func = async () => {
@@ -215,6 +218,9 @@ const App: React.FC = () => {
     });
     getLocalStorage(KEY.HISTORY_LIST).then((currentList) => {
       if (currentList) setHistoryList(currentList.split("\n"));
+    });
+    getLocalStorage(KEY.IMAGE_PHOTO).then((uri) => {
+      if (uri) setImagePhotoUri(uri);
     });
   }, []);
 
@@ -316,6 +322,7 @@ const App: React.FC = () => {
       registeredLink,
       tempLink,
       showLinkDialog,
+      imagePhotoUri,
     }),
     [
       aiType,
@@ -331,6 +338,7 @@ const App: React.FC = () => {
       registeredLink,
       tempLink,
       showLinkDialog,
+      imagePhotoUri,
     ]
   );
 
@@ -352,6 +360,7 @@ const App: React.FC = () => {
           setRegisteredLink,
           setTempLink,
           setShowLinkDialog,
+          setImagePhotoUri,
         }}
       >
         <NavigationContainer>

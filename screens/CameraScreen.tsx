@@ -215,6 +215,12 @@ const CameraScreen: React.FC = () => {
   };
 
   const takePicture = async () => {
+    if (appContextState.imagePhotoUri) {
+      appContextDispatch.setImagePhotoUri(null);
+      saveLocalStorage(KEY.IMAGE_PHOTO, "");
+      return;
+    }
+
     await appContextDispatch.requestPermission();
     if (cameraRef) {
       const photo = await cameraRef.takePictureAsync();
@@ -276,6 +282,8 @@ const CameraScreen: React.FC = () => {
     if (!pickerResult.canceled) {
       const url = pickerResult.assets[0].uri;
       setPhotoUri(url);
+      appContextDispatch.setImagePhotoUri(url);
+      saveLocalStorage(KEY.IMAGE_PHOTO, url);
       Image.getSize(url, (width, height) => {
         setImageSize({ width, height });
       });
@@ -292,7 +300,7 @@ const CameraScreen: React.FC = () => {
           await saveLocalStorage(KEY.INIT_REVIEW, "true");
           alert(i18n.t("rewards.five_star_rating"));
           await StoreReview.requestReview();
-          await pointsChange(1);
+          await pointsChange(10);
         }
       }
     } catch (error) {
@@ -308,18 +316,23 @@ const CameraScreen: React.FC = () => {
         (isPointUse && (await checkOverMaxLimitPoints()))
       ) {
         if (!isPointUse) await storeReview();
+        // Alert.alert(
+        //   isPointUse
+        //     ? i18n.t("errors.not_enough_tickets")
+        //     : i18n.t("errors.daily_limit_exceeded"),
+        //   i18n.t("errors.purchase_tickets"),
+        //   [
+        //     { text: i18n.t("actions.cancel"), style: "cancel" },
+        //     {
+        //       text: i18n.t("errors.purchase"),
+        //       onPress: () => navigation.navigate("Setting"),
+        //     },
+        //   ]
+        // );
         Alert.alert(
           isPointUse
             ? i18n.t("errors.not_enough_tickets")
-            : i18n.t("errors.daily_limit_exceeded"),
-          i18n.t("errors.purchase_tickets"),
-          [
-            { text: i18n.t("actions.cancel"), style: "cancel" },
-            {
-              text: i18n.t("errors.purchase"),
-              onPress: () => navigation.navigate("Setting"),
-            },
-          ]
+            : i18n.t("errors.daily_limit_exceeded")
         );
         return;
       }
@@ -384,8 +397,7 @@ const CameraScreen: React.FC = () => {
       saveLocalStorage(dateString, markdown);
 
       setPhotoUriResult(tmpPhotoUri);
-      // TODO: 後で直す
-      // if (isPointUse) await pointsChange(-1);
+      if (isPointUse) await pointsChange(-1);
     } catch (error) {
       console.log(error);
     } finally {
@@ -415,7 +427,7 @@ const CameraScreen: React.FC = () => {
   }
 
   const CameraOrView = (child?: ReactNode) => {
-    if (appContextState.permission?.granted) {
+    if (appContextState.permission?.granted && !appContextState.imagePhotoUri) {
       return (
         <GestureHandlerRootView style={styles.cameraOutLine}>
           <PinchGestureHandler
@@ -438,7 +450,15 @@ const CameraScreen: React.FC = () => {
     } else {
       return (
         <View style={styles.cameraOutLine}>
-          <View style={styles.camera}>{child}</View>
+          {!appContextState.imagePhotoUri ? (
+            <View style={styles.camera}>{child}</View>
+          ) : (
+            // 前に取った写真を表示
+            <Image
+              source={{ uri: appContextState.imagePhotoUri }}
+              style={styles.camera}
+            />
+          )}
         </View>
       );
     }
@@ -465,14 +485,12 @@ const CameraScreen: React.FC = () => {
           )}
           {
             CameraOrView()
-            // mode === PROMPT_TEMPLATES.FASSION.No ? (
             // <TouchableOpacity
             //   style={styles.toogleFacing}
             //   onPress={toggleCameraFacing}
             // >
             //   <IconAtom name="camera-reverse" type="ionicon" size={20} />
             // </TouchableOpacity>
-            // ) : undefined
           }
           <TouchableOpacity
             style={styles.toogle}

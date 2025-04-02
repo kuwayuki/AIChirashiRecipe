@@ -6,6 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { KEY, saveLocalStorage } from "./utils";
 
@@ -26,7 +28,11 @@ const LinkDialog: React.FC<LinkDialogProps> = ({
 }) => {
   return (
     <Modal transparent animationType="fade" visible={visible}>
-      <View style={styles.modalOverlay}>
+      <KeyboardAvoidingView
+        style={styles.modalOverlay}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 20 : 0}
+      >
         <View style={styles.modalContent}>
           <Text style={styles.modalTitle}>リンク登録</Text>
           <Text style={styles.modalDescription}>
@@ -37,6 +43,7 @@ const LinkDialog: React.FC<LinkDialogProps> = ({
             placeholder="URLを入力"
             value={tempLink}
             onChangeText={setTempLink}
+            autoFocus={true}
           />
           <View style={styles.modalButtonContainer}>
             <TouchableOpacity
@@ -57,7 +64,7 @@ const LinkDialog: React.FC<LinkDialogProps> = ({
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };

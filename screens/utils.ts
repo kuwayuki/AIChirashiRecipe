@@ -12,6 +12,7 @@ export const KEY = {
   INIT_REVIEW: "INIT_REVIEW",
   HISTORY_LIST: "HISTORY_LIST2",
   LINK_AD: "LINK_AD",
+  IMAGE_PHOTO: "IMAGE_PHOTO",
 };
 
 export const DEBUG_MODE = {
@@ -91,7 +92,8 @@ export const checkOverMaxLimit = async (): Promise<boolean> => {
 
 export const checkOverMaxLimitPoints = async (): Promise<boolean> => {
   const storedCount = await getLocalStorageSecure(KEY.POINTS_LIMIT);
-  if (storedCount) {
+  const count = storedCount != null ? Number(storedCount) : 0;
+  if (count > 0) {
     return false;
   } else {
     return true;

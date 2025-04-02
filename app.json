@@ -2,15 +2,16 @@
   "expo": {
     "name": "AIChirashiRecipe",
     "slug": "AIChirashiRecipe",
-    "version": "1.0.8",
+    "version": "1.0.10",
     "ios": {
-      "buildNumber": "8",
+      "buildNumber": "10",
       "supportsTablet": true,
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-2103807205659646~3017378716"
       },
       "bundleIdentifier": "com.kuwahara.AIChirashiRecipe",
       "infoPlist": {
+        "CFBundleDisplayName": "チラシめしAI",
         "CFBundleAllowMixedLocalizations": true,
         "ITSAppUsesNonExemptEncryption": false,
         "NSCameraUsageDescription": "撮影写真を解析するために、カメラの許可が必要です。",
